@@ -1,0 +1,11 @@
+header {
+  div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    .menu {
+      width: 600px;
+    }
+  }
+}
