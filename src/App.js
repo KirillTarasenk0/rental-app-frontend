@@ -7,7 +7,6 @@ export const App = () => {
       <BrowserRouter>
           <Router/>
       </BrowserRouter>
-      <h1>Hello world</h1>
     </>
   );
 }
