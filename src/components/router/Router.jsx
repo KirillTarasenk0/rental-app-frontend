@@ -8,13 +8,18 @@ import {ViewProfile} from "../../pages/settings/viewProfile/ViewProfile";
 import {Registration} from "../../pages/registration/Registration";
 import {Login} from "../../pages/login/Login";
 import {AddAdvert} from "../../pages/addAdvert/AddAdvert";
+import {Home} from "../../pages/home/Home";
 
 export const Router = () => {
     return useRoutes([
         {
-            path: "/",
+            path: '/',
             element: <Header/>,
             children: [
+                {
+                    path: '/',
+                    element: <Home/>,
+                },
                 {
                     path: 'houses',
                     element: <Houses/>,
