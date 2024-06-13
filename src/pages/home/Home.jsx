@@ -3,6 +3,7 @@ import {RentSearchForm} from "../../components/rentSearchForm/RentSearchForm";
 import {RentSearchCheckboxes} from "../../components/rentSearchCheckboxes/RentSearchCheckboxes";
 import {FlatSaleLinks} from "../../components/flatSaleLinks/FlatSaleLinks";
 import {FlatSearchPrice} from "../../components/flatSearchPrice/FlatSearchPrice";
+import {RentTypeLinks} from "../../components/rentTypeLinks/RentTypeLinks";
 
 export const Home = () => {
     return (
@@ -15,6 +16,7 @@ export const Home = () => {
                     <RentSearchCheckboxes/>
                     <FlatSaleLinks/>
                     <FlatSearchPrice/>
+                    <RentTypeLinks/>
                 </div>
             </div>
         </section>
