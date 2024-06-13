@@ -15,7 +15,12 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+    gap: 50px;
     width: 100%;
     padding-left: 200px;
+    padding-top: 50px;
+    margin-top: 50px;
+    border-top: 1px solid #818080;
+    box-sizing: border-box;
   }
 }
