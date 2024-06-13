@@ -1,0 +1,21 @@
+.home__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2a2a2a;
+  padding: 50px;
+  .home__container-title {
+    font-size: 26px;
+    color: #ffffff;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  .search__parameters-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+    padding-left: 200px;
+  }
+}

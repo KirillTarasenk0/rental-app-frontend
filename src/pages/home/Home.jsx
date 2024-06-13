@@ -1,11 +1,21 @@
 import './Home.scss';
 import {RentSearchForm} from "../../components/rentSearchForm/RentSearchForm";
+import {RentSearchCheckboxes} from "../../components/rentSearchCheckboxes/RentSearchCheckboxes";
+import {FlatSaleLinks} from "../../components/flatSaleLinks/FlatSaleLinks";
 
 export const Home = () => {
-
     return (
       <>
-        <RentSearchForm/>
+        <section className="home__section">
+            <div className="home__container">
+                <h1 className="home__container-title">Живите, где хочется</h1>
+                <RentSearchForm/>
+                <div className="search__parameters-container">
+                    <RentSearchCheckboxes/>
+                    <FlatSaleLinks/>
+                </div>
+            </div>
+        </section>
       </>
     );
 }
