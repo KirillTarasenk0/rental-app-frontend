@@ -8,6 +8,9 @@ export const RentTypeLinks = () => {
               <div className="rent__type-container">
                   <h2>Типы жилья</h2>
                   <div>
+                      <Link className="rent__type-link" to={''}>Все</Link>
+                  </div>
+                  <div>
                       <Link className="rent__type-link" to={''}>Квартиры</Link>
                   </div>
                   <div>
