@@ -11,6 +11,9 @@ import {AddAdvert} from "../../pages/addAdvert/AddAdvert";
 import {Home} from "../../pages/home/Home";
 import {AllProperties} from "../../pages/allProperties/AllProperties";
 import {PropertyDetail} from "../../pages/propertyDetail/PropertyDetail";
+import {CheepProperties} from "../../pages/cheepProperties/CheepProperties";
+import {MediumProperties} from "../../pages/mediumProperties/MediumProperties";
+import {ExpensiveProperties} from "../../pages/expensiveProperties/ExpensiveProperties";
 
 export const Router = () => {
     return useRoutes([
@@ -41,6 +44,18 @@ export const Router = () => {
                 {
                     path: 'property/:id',
                     element: <PropertyDetail/>,
+                },
+                {
+                    path: 'cheep',
+                    element: <CheepProperties/>,
+                },
+                {
+                    path: 'medium',
+                    element: <MediumProperties/>,
+                },
+                {
+                    path: 'expensive',
+                    element: <ExpensiveProperties/>,
                 },
                 {
                     path: 'settings',
