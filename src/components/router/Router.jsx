@@ -9,6 +9,7 @@ import {Registration} from "../../pages/registration/Registration";
 import {Login} from "../../pages/login/Login";
 import {AddAdvert} from "../../pages/addAdvert/AddAdvert";
 import {Home} from "../../pages/home/Home";
+import {AllProperties} from "../../pages/allProperties/AllProperties";
 
 export const Router = () => {
     return useRoutes([
@@ -31,6 +32,10 @@ export const Router = () => {
                 {
                     path: 'commercial',
                     element: <Commercial/>,
+                },
+                {
+                    path: 'allProperties',
+                    element: <AllProperties/>,
                 },
                 {
                     path: 'settings',
