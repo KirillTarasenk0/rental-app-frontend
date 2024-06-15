@@ -1,0 +1,73 @@
+$primary-color: #28a745;
+$text-color: #333;
+$secondary-text-color: #555;
+$description-color: #666;
+$background-color: #f9f9f9;
+$border-color: #e1e1e1;
+
+.property-detail__container {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  .property-detail {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: $background-color;
+    border: 1px solid $border-color;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    &__loading, &__error {
+      text-align: center;
+      font-size: 1.5em;
+      color: $text-color;
+    }
+    &__title {
+      font-size: 2.2em;
+      margin-bottom: 20px;
+      color: $primary-color;
+      text-align: center;
+    }
+    &__image-container {
+      text-align: center;
+      margin-bottom: 20px;
+      &__image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      &__no-image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 200px;
+        color: #ccc;
+        font-size: 1.2em;
+      }
+    }
+    &__info {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      p {
+        font-size: 1.1em;
+        color: $text-color;
+        &.property-detail__price {
+          font-size: 1.5em;
+          font-weight: bold;
+          color: $primary-color;
+        }
+        &.property-detail__address, &.property-detail__city, &.property-detail__area, &.property-detail__rooms, &.property-detail__floor, &.property-detail__type, &.property-detail__furnished, &.property-detail__internet, &.property-detail__parking {
+          font-size: 1.1em;
+          color: $secondary-text-color;
+        }
+        &.property-detail__description {
+          font-size: 1em;
+          color: $description-color;
+          line-height: 1.5;
+          margin-top: 20px;
+        }
+      }
+    }
+  }
+}
