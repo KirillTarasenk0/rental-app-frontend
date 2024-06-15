@@ -1,4 +1,4 @@
-import {useRoutes} from "react-router-dom";
+import {Navigate, useRoutes} from "react-router-dom";
 import {Header} from "../header/Header";
 import {Commercial} from "../../pages/commercial/Commercial";
 import {Flats} from "../../pages/flats/Flats";
@@ -14,6 +14,7 @@ import {PropertyDetail} from "../../pages/propertyDetail/PropertyDetail";
 import {CheepProperties} from "../../pages/cheepProperties/CheepProperties";
 import {MediumProperties} from "../../pages/mediumProperties/MediumProperties";
 import {ExpensiveProperties} from "../../pages/expensiveProperties/ExpensiveProperties";
+import {Error404} from "../../pages/error404/Error404";
 
 export const Router = () => {
     return useRoutes([
@@ -81,6 +82,14 @@ export const Router = () => {
                 {
                     path: 'addAdvertisement',
                     element: <AddAdvert/>,
+                },
+                {
+                    path: '404',
+                    element: <Error404/>,
+                },
+                {
+                    path: '*',
+                    element: <Navigate to='/404'/>
                 }
             ],
         },

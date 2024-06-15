@@ -11,6 +11,10 @@ header {
       .header__logo {
         font-size: 30px;
         font-style: italic;
+        .header__logo-link {
+          text-decoration: none;
+          color: inherit;
+        }
       }
       .menu__item {
         width: 600px;

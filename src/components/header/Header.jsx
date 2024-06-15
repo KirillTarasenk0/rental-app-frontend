@@ -1,4 +1,4 @@
-import {Outlet, useNavigate} from "react-router-dom";
+import {Link, Outlet, useNavigate} from "react-router-dom";
 import { Menu } from 'antd';
 import {headerItems} from "../../helpers/headerItems";
 import {useState} from "react";
@@ -18,7 +18,7 @@ export const Header = () => {
                     <nav>
                         <ul>
                             <li className="header__logo">
-                                Realt
+                                <Link className="header__logo-link" to='/'>Realt</Link>
                             </li>
                             <li>
                                 <Menu
