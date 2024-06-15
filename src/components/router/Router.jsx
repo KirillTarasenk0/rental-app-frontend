@@ -10,6 +10,7 @@ import {Login} from "../../pages/login/Login";
 import {AddAdvert} from "../../pages/addAdvert/AddAdvert";
 import {Home} from "../../pages/home/Home";
 import {AllProperties} from "../../pages/allProperties/AllProperties";
+import {PropertyDetail} from "../../pages/propertyDetail/PropertyDetail";
 
 export const Router = () => {
     return useRoutes([
@@ -36,6 +37,10 @@ export const Router = () => {
                 {
                     path: 'allProperties',
                     element: <AllProperties/>,
+                },
+                {
+                    path: 'property/:id',
+                    element: <PropertyDetail/>,
                 },
                 {
                     path: 'settings',

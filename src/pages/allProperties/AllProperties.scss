@@ -11,4 +11,10 @@
     gap: 20px;
     justify-content: space-around;
   }
+  &__link {
+    text-decoration: none; /* Убирает подчеркивание */
+    color: inherit; /* Наследует цвет текста от родительского элемента */
+    display: block; /* Обеспечивает корректное поведение флекс-элементов */
+    flex: 0 1 calc(33.333% - 20px);
+  }
 }
