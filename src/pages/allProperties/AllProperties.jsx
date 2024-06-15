@@ -11,7 +11,7 @@ export const AllProperties = () => {
             {properties && properties.data?.map(property => (
                 <PropertyCard
                     key={property?.id}
-                    image={property?.property_images}
+                    image={property?.property_images[0]?.image_path}
                     title={property?.title}
                     price={property?.price}
                     rooms={property?.rooms}

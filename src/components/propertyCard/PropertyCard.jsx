@@ -5,7 +5,7 @@ export const PropertyCard = ({image, title, price, rooms, area, floor, city, add
       <>
         <div>
             <div>
-                {image ? <img src="" alt=""/> : <span>Изображение не зашружено</span>}
+                {image ? <img src={image} alt=""/> : <span>Изображение не зашружено</span>}
             </div>
             <div>
                 <h3>{title}</h3>
