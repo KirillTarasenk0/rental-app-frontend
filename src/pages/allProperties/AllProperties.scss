@@ -1,0 +1,14 @@
+.all-properties {
+  padding: 20px;
+  &__loading {
+    text-align: center;
+    font-size: 1.5em;
+    color: #888;
+  }
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-around;
+  }
+}

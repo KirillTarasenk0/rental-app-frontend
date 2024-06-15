@@ -1,27 +1,25 @@
 import './PropertyCard.scss';
 
-export const PropertyCard = ({image, title, price, rooms, area, floor, city, address, description}) => {
+export const PropertyCard = ({ image, title, price, rooms, area, floor, city, address, description }) => {
     return (
-      <>
-        <div>
-            <div>
-                {image ? <img src={image} alt=""/> : <span>Изображение не зашружено</span>}
+        <div className="property-card">
+            <div className="property-card__image-container">
+                {image ? <img src={image} alt="Property" className="property-card__image-container__image" /> : <span className="property-card__image-container__no-image">Изображение не загружено</span>}
             </div>
-            <div>
-                <h3>{title}</h3>
-                <p>{price}</p>
-                <div>
-                    <span>{rooms}</span>
-                    <span>{area}</span>
-                    <span>{floor}</span>
+            <div className="property-card__content">
+                <h3 className="property-card__content__title">{title}</h3>
+                <p className="property-card__content__price">{price} ₽</p>
+                <div className="property-card__content__details">
+                    <span>{rooms} комн.</span>
+                    <span>{area} кв.м.</span>
+                    <span>Этаж: {floor}</span>
                 </div>
-                <div>
+                <div className="property-card__content__location">
                     <span>{city}</span>
                     <span>{address}</span>
                 </div>
-                <p>{description}</p>
+                <p className="property-card__content__description">{description}</p>
             </div>
         </div>
-      </>
     );
 }
