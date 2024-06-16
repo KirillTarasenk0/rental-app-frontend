@@ -4,6 +4,7 @@ import {propertiesTypeApi} from "./slices/propertiesTypeApi";
 import {propertyDetailsApi} from "./slices/propertyDetailsApi";
 import {propertiesPriceApi} from "./slices/propertiesPriceApi";
 import {propertiesRoomsApi} from "./slices/propertyRoomsApi";
+import {propertiesSearchApi} from "./slices/propertiesSearchApi";
 
 export const store = configureStore({
     reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
         [propertyDetailsApi.reducerPath]: propertyDetailsApi.reducer,
         [propertiesPriceApi.reducerPath]: propertiesPriceApi.reducer,
         [propertiesRoomsApi.reducerPath]: propertiesRoomsApi.reducer,
+        [propertiesSearchApi.reducerPath]: propertiesSearchApi.reducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware().concat(
@@ -18,6 +20,7 @@ export const store = configureStore({
             propertyDetailsApi.middleware,
             propertiesPriceApi.middleware,
             propertiesRoomsApi.middleware,
+            propertiesSearchApi.middleware,
         ),
 });
 

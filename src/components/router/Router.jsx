@@ -16,6 +16,7 @@ import {MediumProperties} from "../../pages/mediumProperties/MediumProperties";
 import {ExpensiveProperties} from "../../pages/expensiveProperties/ExpensiveProperties";
 import {Error404} from "../../pages/error404/Error404";
 import {RoomsProperties} from "../../pages/roomsProperties/RoomsProperties";
+import {SearchedProperties} from "../../pages/searchedProperties/SearchedProperties";
 
 export const Router = () => {
     return useRoutes([
@@ -62,6 +63,10 @@ export const Router = () => {
                 {
                     path: 'rooms/:roomNumber',
                     element: <RoomsProperties/>,
+                },
+                {
+                    path: 'properties/searched',
+                    element: <SearchedProperties/>,
                 },
                 {
                     path: 'settings',
