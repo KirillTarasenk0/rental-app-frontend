@@ -1,6 +1,6 @@
 import './Login.scss';
-import {useState} from "react";
-import {useNavigate} from "react-router-dom";
+import { useState } from "react";
+import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
 
 export const Login = () => {
@@ -11,7 +11,7 @@ export const Login = () => {
     const login = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://127.0.0.1:8000/api/login', {email, password});
+            const response = await axios.post('http://127.0.0.1:8000/api/login', { email, password });
             localStorage.setItem('token', response.data.token);
             navigate('/profile');
         } catch (error) {
@@ -20,26 +20,37 @@ export const Login = () => {
         }
     }
     return (
-      <>
-        <div>
-            <h2>Login</h2>
-            <form onSubmit={login}>
-                <div>
-                    <label>Email</label>
-                    <input type="email" value={email} onChange={(e) =>
-                        setEmail(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <label>Password</label>
-                    <input type="password" value={password} onChange={(e) =>
-                        setPassword(e.target.value)}
-                    />
-                </div>
-                <button type="submit">Login</button>
-            </form>
-            {message && <p>{message}</p>}
+        <div className="login__container">
+            <div className="login__form">
+                <h2 className="login__title">Login</h2>
+                {message && <p className="login__message">{message}</p>}
+                <form onSubmit={login}>
+                    <div className="login__field">
+                        <label htmlFor="email" className="login__label">Email</label>
+                        <input
+                            type="email"
+                            id="email"
+                            className="login__input"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                    </div>
+                    <div className="login__field">
+                        <label htmlFor="password" className="login__label">Password</label>
+                        <input
+                            type="password"
+                            id="password"
+                            className="login__input"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </div>
+                    <div className="register__login-link">
+                        Ещё нету аккаунта? <Link to='/register'>Зарегистрируйтесь</Link>
+                    </div>
+                    <button type="submit" className="login__button">Login</button>
+                </form>
+            </div>
         </div>
-      </>
     );
 }

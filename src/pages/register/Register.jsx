@@ -1,5 +1,6 @@
-import { useState } from 'react';
 import './Register.scss';
+import { useState } from 'react';
+import { Link } from 'react-router-dom'; // Импортируем компонент Link для роутинга
 import axios from "axios";
 
 export const Register = () => {
@@ -20,41 +21,61 @@ export const Register = () => {
             setMessage('Registration successful. You can now log in');
         } catch (error) {
             setMessage('Registration failed. Check your input');
+            console.error(error);
         }
     };
     return (
-      <>
-        <div>
-            <h2>Register</h2>
-            <form onSubmit={register}>
-                <div>
-                    <label>Name</label>
-                    <input type="text" value={name} onChange={(e) =>
-                        setName(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <label>Email</label>
-                    <input type="email" value={email} onChange={(e) =>
-                        setEmail(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <label>Password</label>
-                    <input type="password" value={password} onChange={(e) =>
-                        setPassword(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <label>Confirm Password</label>
-                    <input type="password" value={passwordConfirmation} onChange={(e) =>
-                        setPasswordConfirmation(e.target.value)}
-                    />
-                </div>
-                <button type="submit">Register</button>
-            </form>
-            {message && <p>{message}</p>}
-        </div>
-      </>
+        <>
+            <div className="register__container">
+                <form className="register__form" onSubmit={register}>
+                    <h2 className="register__title">Register</h2>
+                    {message && <p className="register__message">{message}</p>}
+                    <div className="register__field">
+                        <label className="register__label">Name</label>
+                        <input
+                            type="text"
+                            className="register__input"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="register__field">
+                        <label className="register__label">Email</label>
+                        <input
+                            type="email"
+                            className="register__input"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="register__field">
+                        <label className="register__label">Password</label>
+                        <input
+                            type="password"
+                            className="register__input"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="register__field">
+                        <label className="register__label">Confirm Password</label>
+                        <input
+                            type="password"
+                            className="register__input"
+                            value={passwordConfirmation}
+                            onChange={(e) => setPasswordConfirmation(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="register__login-link">
+                        Уже есть аккаунт? <Link to='/login'>Залогиньтесь</Link>
+                    </div>
+                    <button className="register__button" type="submit">Register</button>
+                </form>
+            </div>
+        </>
     );
 };
