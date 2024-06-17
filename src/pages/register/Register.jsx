@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useRegisterUserMutation} from "../../slices/userAuthApi";
 import './Register.scss';
 import axios from "axios";
 
