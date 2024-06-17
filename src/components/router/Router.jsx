@@ -5,8 +5,7 @@ import {Flats} from "../../pages/flats/Flats";
 import {Houses} from "../../pages/houses/Houses";
 import {EditProfile} from "../../pages/settings/editProfile/EditProfile";
 import {ViewProfile} from "../../pages/settings/viewProfile/ViewProfile";
-import {Registration} from "../../pages/registration/Registration";
-import {Login} from "../../pages/login/Login";
+import {Register} from "../../pages/register/Register";
 import {AddAdvert} from "../../pages/addAdvert/AddAdvert";
 import {Home} from "../../pages/home/Home";
 import {AllProperties} from "../../pages/allProperties/AllProperties";
@@ -17,6 +16,8 @@ import {ExpensiveProperties} from "../../pages/expensiveProperties/ExpensiveProp
 import {Error404} from "../../pages/error404/Error404";
 import {RoomsProperties} from "../../pages/roomsProperties/RoomsProperties";
 import {SearchedProperties} from "../../pages/searchedProperties/SearchedProperties";
+import {Login} from "../../pages/login/Login";
+import {UserProfile} from "../../pages/userProfile/UserProfile";
 
 export const Router = () => {
     return useRoutes([
@@ -82,12 +83,16 @@ export const Router = () => {
                     ],
                 },
                 {
+                    path: 'register',
+                    element: <Register/>,
+                },
+                {
                     path: 'login',
                     element: <Login/>,
                 },
                 {
-                    path: 'registration',
-                    element: <Registration/>,
+                    path: 'profile',
+                    element: <UserProfile/>,
                 },
                 {
                     path: 'addAdvertisement',

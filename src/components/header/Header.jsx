@@ -31,7 +31,7 @@ export const Header = () => {
                             </li>
                             <li className="header__buttons-container">
                                 <div className="header__enter-button">
-                                    <button onClick={() => navigate('/login')}>
+                                    <button onClick={() => navigate('/register')}>
                                         Войти
                                     </button>
                                 </div>
