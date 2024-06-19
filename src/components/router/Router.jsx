@@ -4,7 +4,6 @@ import {Commercial} from "../../pages/commercial/Commercial";
 import {Flats} from "../../pages/flats/Flats";
 import {Houses} from "../../pages/houses/Houses";
 import {EditProfile} from "../../pages/settings/editProfile/EditProfile";
-import {ViewProfile} from "../../pages/settings/viewProfile/ViewProfile";
 import {Register} from "../../pages/register/Register";
 import {AddAdvert} from "../../pages/addAdvert/AddAdvert";
 import {Home} from "../../pages/home/Home";
@@ -78,7 +77,7 @@ export const Router = () => {
                         },
                         {
                             path: 'viewProfile',
-                            element: <ViewProfile/>,
+                            element: <UserProfile/>,
                         }
                     ],
                 },
@@ -89,10 +88,6 @@ export const Router = () => {
                 {
                     path: 'login',
                     element: <Login/>,
-                },
-                {
-                    path: 'profile',
-                    element: <UserProfile/>,
                 },
                 {
                     path: 'addAdvertisement',

@@ -15,7 +15,7 @@ export const Login = () => {
         try {
             const response = await axios.post('http://127.0.0.1:8000/api/login', { email, password });
             login(response.data)
-            navigate('/profile');
+            navigate('/viewProfile');
         } catch (error) {
             setMessage('Login failed. Check your input');
             console.error(error);

@@ -3,14 +3,18 @@ import { Menu } from 'antd';
 import {headerItems} from "../../helpers/headerItems";
 import {useState} from "react";
 import './Header.scss';
+import {useAuth} from "../../contexts/AuthContext";
 
 export const Header = () => {
     const [current, setCurrent] = useState('mail');
     const navigate = useNavigate();
+    const {userStatus} = useAuth();
+    const isLoggedIn = !!userStatus?.token;
     const onClick = (e) => {
         console.log('click ', e);
         setCurrent(e.key);
     };
+    console.log(isLoggedIn);
     return (
         <>
             <header>
@@ -30,16 +34,19 @@ export const Header = () => {
                                 />
                             </li>
                             <li className="header__buttons-container">
-                                <div className="header__enter-button">
-                                    <button onClick={() => navigate('/register')}>
-                                        Войти
-                                    </button>
-                                </div>
-                                <div className="header__advertisement-button">
-                                    <button onClick={() => navigate('/addAdvertisement')}>
-                                        Добавить объявление
-                                    </button>
-                                </div>
+                                {isLoggedIn ? (
+                                    <div className="header__enter-button">
+                                        <button onClick={() => navigate('/register')}>
+                                            Войти
+                                        </button>
+                                    </div>
+                                ) : (
+                                    <div className="header__advertisement-button">
+                                        <button onClick={() => navigate('/addAdvertisement')}>
+                                            Добавить объявление
+                                        </button>
+                                    </div>
+                                )}
                             </li>
                         </ul>
                     </nav>
