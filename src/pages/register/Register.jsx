@@ -1,7 +1,8 @@
 import './Register.scss';
 import { useState } from 'react';
-import { Link } from 'react-router-dom'; // Импортируем компонент Link для роутинга
+import {Link, useNavigate} from 'react-router-dom'; // Импортируем компонент Link для роутинга
 import axios from "axios";
+import {useAuth} from "../../contexts/AuthContext";
 
 export const Register = () => {
     const [name, setName] = useState('');
@@ -9,6 +10,8 @@ export const Register = () => {
     const [password, setPassword] = useState('');
     const [passwordConfirmation, setPasswordConfirmation] = useState('');
     const [message, setMessage] = useState('');
+    const navigate = useNavigate();
+    const {login} = useAuth();
     const register = async (e) => {
         e.preventDefault();
         try {
@@ -18,6 +21,8 @@ export const Register = () => {
                 password,
                 password_confirmation: passwordConfirmation,
             });
+            login(response.data);
+            navigate('/profile');
             setMessage('Registration successful. You can now log in');
         } catch (error) {
             setMessage('Registration failed. Check your input');

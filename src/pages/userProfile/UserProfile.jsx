@@ -1,8 +1,11 @@
 import './UserProfile.scss';
 import {useEffect, useState} from "react";
 import axios from "axios";
+import {useAuth} from "../../contexts/AuthContext";
 
 export const UserProfile = () => {
+    const {userStatus} = useAuth();
+    console.log(userStatus);
     const [user, setUser] = useState(null);
     useEffect(() => {
         const getUser = async () => {

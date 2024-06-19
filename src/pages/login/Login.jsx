@@ -2,17 +2,20 @@ import './Login.scss';
 import { useState } from "react";
 import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
+import {useAuth} from "../../contexts/AuthContext";
 
 export const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
-    const login = async (e) => {
+    const {login} = useAuth();
+    const handleLogin = async (e) => {
         e.preventDefault();
         try {
             const response = await axios.post('http://127.0.0.1:8000/api/login', { email, password });
-            localStorage.setItem('token', response.data.token);
+            //localStorage.setItem('token', response.data.token);
+            login(response.data)
             navigate('/profile');
         } catch (error) {
             setMessage('Login failed. Check your input');
@@ -24,7 +27,7 @@ export const Login = () => {
             <div className="login__form">
                 <h2 className="login__title">Login</h2>
                 {message && <p className="login__message">{message}</p>}
-                <form onSubmit={login}>
+                <form onSubmit={handleLogin}>
                     <div className="login__field">
                         <label htmlFor="email" className="login__label">Email</label>
                         <input
