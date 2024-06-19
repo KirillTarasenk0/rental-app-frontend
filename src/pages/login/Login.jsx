@@ -14,7 +14,6 @@ export const Login = () => {
         e.preventDefault();
         try {
             const response = await axios.post('http://127.0.0.1:8000/api/login', { email, password });
-            //localStorage.setItem('token', response.data.token);
             login(response.data)
             navigate('/profile');
         } catch (error) {

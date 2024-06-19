@@ -1,17 +1,19 @@
 import './Register.scss';
 import { useState } from 'react';
-import {Link, useNavigate} from 'react-router-dom'; // Импортируем компонент Link для роутинга
+import { Link, useNavigate } from 'react-router-dom'; // Import Link for routing
 import axios from "axios";
-import {useAuth} from "../../contexts/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 
 export const Register = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passwordConfirmation, setPasswordConfirmation] = useState('');
+    const [role, setRole] = useState('renter');
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
-    const {login} = useAuth();
+    const { login } = useAuth();
+
     const register = async (e) => {
         e.preventDefault();
         try {
@@ -20,6 +22,7 @@ export const Register = () => {
                 email,
                 password,
                 password_confirmation: passwordConfirmation,
+                role,
             });
             login(response.data);
             navigate('/profile');
@@ -29,12 +32,13 @@ export const Register = () => {
             console.error(error);
         }
     };
+
     return (
         <>
             <div className="register__container">
                 <form className="register__form" onSubmit={register}>
                     <h2 className="register__title">Register</h2>
-                    {message && <p className="register__message">{message}</p>}
+                    {message && <p className={`register__message ${message.includes('failed') ? 'error' : ''}`}>{message}</p>}
                     <div className="register__field">
                         <label className="register__label">Name</label>
                         <input
@@ -74,6 +78,18 @@ export const Register = () => {
                             onChange={(e) => setPasswordConfirmation(e.target.value)}
                             required
                         />
+                    </div>
+                    <div className="register__field">
+                        <label className="register__label">Role</label>
+                        <select
+                            className="register__input"
+                            value={role}
+                            onChange={(e) => setRole(e.target.value)}
+                            required
+                        >
+                            <option value="renter">Renter</option>
+                            <option value="landlord">Landlord</option>
+                        </select>
                     </div>
                     <div className="register__login-link">
                         Уже есть аккаунт? <Link to='/login'>Залогиньтесь</Link>
