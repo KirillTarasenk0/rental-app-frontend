@@ -23,8 +23,8 @@ export const Register = () => {
                 password_confirmation: passwordConfirmation,
                 role,
             });
+            navigate('/settings/viewProfile');
             login(response.data);
-            navigate('/viewProfile');
             setMessage('Registration successful. You can now log in');
         } catch (error) {
             setMessage('Registration failed. Check your input');

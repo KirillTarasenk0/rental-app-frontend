@@ -1,21 +1,21 @@
 import './Login.scss';
 import { useState } from "react";
-import {Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import {useAuth} from "../../contexts/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 
 export const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
-    const {login} = useAuth();
+    const { login } = useAuth();
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
             const response = await axios.post('http://127.0.0.1:8000/api/login', { email, password });
-            login(response.data)
-            navigate('/viewProfile');
+            login(response.data);
+            navigate('/settings/viewProfile');
         } catch (error) {
             setMessage('Login failed. Check your input');
             console.error(error);
@@ -55,4 +55,4 @@ export const Login = () => {
             </div>
         </div>
     );
-}
+};

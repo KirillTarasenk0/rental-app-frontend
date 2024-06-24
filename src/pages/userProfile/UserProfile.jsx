@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import {useAuth} from "../../contexts/AuthContext";
 
 export const UserProfile = () => {
-    const { userStatus } = useAuth();
+    const { userStatus, updateUser } = useAuth();
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
     useEffect(() => {

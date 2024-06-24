@@ -1,51 +1,52 @@
 import './EditProfile.scss';
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { useAuth } from "../../../contexts/AuthContext";
+import { useEditUserProfileMutation } from "../../../slices/userProfileApi";
+import { useNavigate } from "react-router-dom";
 
 export const EditProfile = () => {
-    const { userStatus } = useAuth();
+    const { userStatus, updateUser } = useAuth();
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [role, setRole] = useState('');
     const [avatar, setAvatar] = useState(null);
+    const navigate = useNavigate();
+    const [editUserProfile, { isLoading }] = useEditUserProfileMutation();
 
     useEffect(() => {
         if (userStatus) {
-            setName(userStatus.name);
-            setEmail(userStatus.email);
-            setRole(userStatus.role);
-            setAvatar(userStatus.avatar);
+            setName(userStatus.name || '');
+            setEmail(userStatus.email || '');
+            setRole(userStatus.role || '');
+            setAvatar(userStatus.avatar || null);
         }
     }, [userStatus]);
 
-    /*const handleUpdate = async (e) => {
+    const handleUpdate = async (e) => {
         e.preventDefault();
-        const token = localStorage.getItem('token');
+        const userData = {
+            name,
+            email,
+            role,
+        };
         try {
-            const formData = new FormData();
-            formData.append('name', name);
-            formData.append('email', email);
-            formData.append('role', role);
-            formData.append('avatar', avatar); // Assuming avatar is a File object
-
-            await axios.put('http://127.0.0.1:8000/api/user', formData, {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'multipart/form-data',
-                },
-            });
-            navigate('/profile');
+            const result = await editUserProfile(userData);
+            if (result.error) {
+                console.error('Failed to update profile:', result.error);
+            } else {
+                updateUser(userData);
+                navigate('/settings/viewProfile');
+            }
         } catch (error) {
-            console.error(error);
+            console.error('Failed to update profile:', error);
         }
-    };*/
+    };
 
     return (
         <div className="user-profile">
             <h1 className="user-profile__title">Edit Profile</h1>
             {userStatus ? (
-                <form className="user-profile__details"> {/*onSubmit={handleUpdate}*/}
+                <form className="user-profile__details" onSubmit={handleUpdate}>
                     <div className="user-profile__form-group">
                         <label className="user-profile__label">Name</label>
                         <input
@@ -68,21 +69,23 @@ export const EditProfile = () => {
                     </div>
                     <div className="user-profile__form-group">
                         <label className="user-profile__label">Role</label>
-                        <input
-                            type="text"
+                        <select
                             className="user-profile__input"
                             value={role}
                             onChange={(e) => setRole(e.target.value)}
                             required
-                        />
+                        >
+                            <option value="renter">Renter</option>
+                            <option value="landlord">Landlord</option>
+                        </select>
                     </div>
                     <div className="user-profile__form-group">
                         <label className="user-profile__label">Avatar</label>
                         <input
-                            type="file" // Change input type to file
+                            type="file"
                             className="user-profile__input"
-                            onChange={(e) => setAvatar(e.target.files[0])} // Capture the selected file
-                            accept="image/*" // Allow only image files to be selected
+                            onChange={(e) => setAvatar(e.target.files[0])}
+                            accept="image/*"
                         />
                     </div>
                     <div className="user-profile__avatar">

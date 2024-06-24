@@ -1,20 +1,27 @@
 import {Link, Outlet, useNavigate} from "react-router-dom";
 import { Menu } from 'antd';
 import {headerItems} from "../../helpers/headerItems";
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import './Header.scss';
 import {useAuth} from "../../contexts/AuthContext";
 
 export const Header = () => {
     const [current, setCurrent] = useState('mail');
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const navigate = useNavigate();
-    const {userStatus} = useAuth();
-    const isLoggedIn = !!userStatus?.token;
+    const { userStatus } = useAuth();
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            setIsLoggedIn(true);
+        } else {
+            setIsLoggedIn(false);
+        }
+    }, [userStatus]);
     const onClick = (e) => {
         console.log('click ', e);
         setCurrent(e.key);
     };
-    console.log(isLoggedIn);
     return (
         <>
             <header>
@@ -34,19 +41,18 @@ export const Header = () => {
                                 />
                             </li>
                             <li className="header__buttons-container">
-                                {isLoggedIn ? (
+                                {!isLoggedIn && (
                                     <div className="header__enter-button">
                                         <button onClick={() => navigate('/register')}>
                                             Войти
                                         </button>
                                     </div>
-                                ) : (
-                                    <div className="header__advertisement-button">
-                                        <button onClick={() => navigate('/addAdvertisement')}>
-                                            Добавить объявление
-                                        </button>
-                                    </div>
                                 )}
+                                <div className="header__advertisement-button">
+                                    <button onClick={() => navigate('/addAdvertisement')}>
+                                        Добавить объявление
+                                    </button>
+                                </div>
                             </li>
                         </ul>
                     </nav>

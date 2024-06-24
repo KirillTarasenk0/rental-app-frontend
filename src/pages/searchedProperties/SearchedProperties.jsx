@@ -7,9 +7,6 @@ export const SearchedProperties = () => {
     const location = useLocation();
     const formData = location.state;
     const { data: properties, error, isLoading } = useGetSearchedPropertiesQuery(formData);
-    console.log(formData);
-    console.log(formData.property_type, formData.rooms, formData.price_from, formData.price_to, formData.city);
-    console.log(properties);
     return (
         <>
             <div className="all-properties">
