@@ -18,23 +18,26 @@ export const EditProfile = () => {
             setName(userStatus.name || '');
             setEmail(userStatus.email || '');
             setRole(userStatus.role || '');
-            setAvatar(userStatus.avatar || null);
+            setAvatar(null); 
         }
     }, [userStatus]);
 
     const handleUpdate = async (e) => {
         e.preventDefault();
-        const userData = {
-            name,
-            email,
-            role,
-        };
+
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('email', email);
+        formData.append('role', role);
+        if (avatar) formData.append('avatar', avatar);
+
         try {
-            const result = await editUserProfile(userData);
+            const result = await editUserProfile(formData).unwrap();
             if (result.error) {
                 console.error('Failed to update profile:', result.error);
             } else {
-                updateUser(userData);
+                const updatedUser = { ...userStatus, name, email, role, avatar: result.avatar };
+                updateUser(updatedUser);
                 navigate('/settings/viewProfile');
             }
         } catch (error) {
@@ -90,6 +93,9 @@ export const EditProfile = () => {
                     </div>
                     <div className="user-profile__avatar">
                         <span className="user-profile__label">Current Avatar:</span>
+                        {userStatus.avatar && !avatar && (
+                            <img className="user-profile__image" src={userStatus.avatar} alt="User Avatar" />
+                        )}
                         {avatar && (
                             <img className="user-profile__image" src={URL.createObjectURL(avatar)} alt="User Avatar" />
                         )}

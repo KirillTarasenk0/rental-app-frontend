@@ -1,9 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-export const userProfileApi = createApi({
-    reducerPath: 'userProfileApi',
+export const addAdvertApi = createApi({
+    reducerPath: 'addAdvertApi',
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://127.0.0.1:8000/api/profile',
+        baseUrl: 'http://127.0.0.1:8000/api/property',
         prepareHeaders: (headers) => {
             const token = localStorage.getItem('token');
             if (token) {
@@ -13,9 +13,9 @@ export const userProfileApi = createApi({
         }
     }),
     endpoints: (builder) => ({
-        editUserProfile: builder.mutation({
+        addAdvert: builder.mutation({
             query: (formData) => ({
-                url: '/edit',
+                url: '/addProperty',
                 method: 'POST',
                 body: formData,
             }),
@@ -23,4 +23,4 @@ export const userProfileApi = createApi({
     }),
 });
 
-export const { useEditUserProfileMutation } = userProfileApi;
+export const { useAddAdvertMutation } = addAdvertApi;

@@ -6,6 +6,7 @@ import {propertiesPriceApi} from "./slices/propertiesPriceApi";
 import {propertiesRoomsApi} from "./slices/propertyRoomsApi";
 import {propertiesSearchApi} from "./slices/propertiesSearchApi";
 import {userProfileApi} from "./slices/userProfileApi";
+import {addAdvertApi} from "./slices/addAdvertApi";
 
 export const store = configureStore({
     reducer: {
@@ -15,6 +16,7 @@ export const store = configureStore({
         [propertiesRoomsApi.reducerPath]: propertiesRoomsApi.reducer,
         [propertiesSearchApi.reducerPath]: propertiesSearchApi.reducer,
         [userProfileApi.reducerPath]: userProfileApi.reducer,
+        [addAdvertApi.reducerPath]: addAdvertApi.reducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware().concat(
@@ -24,6 +26,7 @@ export const store = configureStore({
             propertiesRoomsApi.middleware,
             propertiesSearchApi.middleware,
             userProfileApi.middleware,
+            addAdvertApi.middleware,
         ),
 });
 
