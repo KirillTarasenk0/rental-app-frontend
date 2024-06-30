@@ -17,6 +17,7 @@ import {RoomsProperties} from "../../pages/roomsProperties/RoomsProperties";
 import {SearchedProperties} from "../../pages/searchedProperties/SearchedProperties";
 import {Login} from "../../pages/login/Login";
 import {UserProfile} from "../../pages/userProfile/UserProfile";
+import {MyAdverts} from "../../pages/myAdverts/MyAdverts";
 
 export const Router = () => {
     return useRoutes([
@@ -78,7 +79,11 @@ export const Router = () => {
                         {
                             path: 'viewProfile',
                             element: <UserProfile/>,
-                        }
+                        },
+                        {
+                            path: 'myAdverts',
+                            element: <MyAdverts/>,
+                        },
                     ],
                 },
                 {

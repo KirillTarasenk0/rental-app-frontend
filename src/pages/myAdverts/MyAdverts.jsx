@@ -1,12 +1,13 @@
-import './SearchedProperties.scss';
-import {Link, useLocation} from "react-router-dom";
-import {useGetSearchedPropertiesQuery} from "../../slices/propertiesSearchApi";
+import './MyAdverts.scss';
 import {PropertyCard} from "../../components/propertyCard/PropertyCard";
+import {useAuth} from "../../contexts/AuthContext";
+import {useGetUserAddedPropertiesQuery} from "../../slices/userAddedPropertiesApi";
+import {Link} from "react-router-dom";
 
-export const SearchedProperties = () => {
-    const location = useLocation();
-    const formData = location.state;
-    const { data: properties, error, isLoading } = useGetSearchedPropertiesQuery(formData);
+export const MyAdverts = () => {
+    const {userStatus} = useAuth();
+    const {data: properties, error, isLoading} = useGetUserAddedPropertiesQuery(userStatus?.id);
+    console.log(properties);
     return (
         <>
             <div className="all-properties">

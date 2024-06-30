@@ -1,27 +1,29 @@
-import {Link, Outlet, useNavigate} from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { Menu } from 'antd';
-import {headerItems} from "../../helpers/headerItems";
-import {useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import './Header.scss';
-import {useAuth} from "../../contexts/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
+import getHeaderItems from "../../helpers/headerItems";
 
 export const Header = () => {
     const [current, setCurrent] = useState('mail');
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const navigate = useNavigate();
     const { userStatus } = useAuth();
+    console.log(userStatus)
     useEffect(() => {
         const token = localStorage.getItem('token');
-        if (token) {
+        if (token || userStatus) {
             setIsLoggedIn(true);
         } else {
             setIsLoggedIn(false);
         }
     }, [userStatus]);
+
     const onClick = (e) => {
-        console.log('click ', e);
         setCurrent(e.key);
     };
+
     return (
         <>
             <header>
@@ -37,7 +39,7 @@ export const Header = () => {
                                     onClick={onClick}
                                     selectedKeys={[current]}
                                     mode="horizontal"
-                                    items={headerItems}
+                                    items={getHeaderItems(isLoggedIn, userStatus)}
                                 />
                             </li>
                             <li className="header__buttons-container">
