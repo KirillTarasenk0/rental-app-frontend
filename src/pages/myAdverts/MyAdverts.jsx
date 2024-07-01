@@ -7,7 +7,6 @@ import {Link} from "react-router-dom";
 export const MyAdverts = () => {
     const {userStatus} = useAuth();
     const {data: properties, error, isLoading} = useGetUserAddedPropertiesQuery(userStatus?.id);
-    console.log(properties);
     return (
         <>
             <div className="all-properties">
@@ -16,6 +15,7 @@ export const MyAdverts = () => {
                     {properties && properties.data?.map(property => (
                         <Link to={`/property/${property.id}`} className="all-properties__link" key={property?.id}>
                             <PropertyCard
+                                id={property?.id}
                                 image={property?.property_images[0]?.image_path}
                                 title={property?.title}
                                 price={property?.price}

@@ -1,6 +1,25 @@
+import React from 'react';
 import './PropertyCard.scss';
+import { useAddFavouritePropertyMutation } from "../../slices/userFavouriteProperyApi";
 
-export const PropertyCard = ({ image, title, price, rooms, area, floor, city, address, description }) => {
+export const PropertyCard = ({ id, image, title, price, rooms, area, floor, city, address, description }) => {
+    const [addFavouriteProperty, { isLoading }] = useAddFavouritePropertyMutation();
+
+    const handleAddToFavorites = async (e) => {
+        e.preventDefault();
+        try {
+            const result = await addFavouriteProperty({ id });
+            console.log(result);
+        } catch (error) {
+            console.error(error);
+        }
+        console.log('Добавлено в избранное' + id);
+    };
+
+    const handleBookProperty = () => {
+        console.log('Забронировано' + id);
+    };
+
     return (
         <div className="property-card">
             <div className="property-card__image-container">
@@ -19,7 +38,15 @@ export const PropertyCard = ({ image, title, price, rooms, area, floor, city, ad
                     <span>{address}</span>
                 </div>
                 <p className="property-card__content__description">{description}</p>
+                <div className="property-card__content__actions">
+                    <button className="property-card__button property-card__button--favorite" onClick={handleAddToFavorites}>
+                        Добавить в избранное
+                    </button>
+                    <button className="property-card__button property-card__button--book" onClick={handleBookProperty}>
+                        Забронировать
+                    </button>
+                </div>
             </div>
         </div>
     );
-}
+};

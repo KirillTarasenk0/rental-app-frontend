@@ -13,6 +13,7 @@ export const Houses = () => {
                     {properties && properties.data?.map(property => (
                         <Link to={`/property/${property.id}`} className="all-properties__link" key={property?.id}>
                             <PropertyCard
+                                id={property?.id}
                                 image={property?.property_images[0]?.image_path}
                                 title={property?.title}
                                 price={property?.price}
