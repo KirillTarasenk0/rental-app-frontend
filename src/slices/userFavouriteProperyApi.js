@@ -20,7 +20,10 @@ export const userFavouritePropertyApi = createApi({
                 body: { id },
             }),
         }),
+        getFavouriteProperty: builder.query({
+            query: () => '/getFavouriteProperties',
+        }),
     }),
 });
 
-export const { useAddFavouritePropertyMutation } = userFavouritePropertyApi;
+export const { useAddFavouritePropertyMutation, useGetFavouritePropertyQuery } = userFavouritePropertyApi;

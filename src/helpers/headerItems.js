@@ -39,6 +39,10 @@ const getHeaderItems = (isLoggedIn, userStatus) => {
                             label: <Link to="settings/myAdverts">Мои объявления</Link>,
                             key: 'myAds',
                         } : null,
+                        isLoggedIn ? {
+                            label: <Link to="settings/favouriteProperties">Избранные объявления</Link>,
+                            key: 'favouriteAdds',
+                        } : null,
                     ],
                 },
             ],

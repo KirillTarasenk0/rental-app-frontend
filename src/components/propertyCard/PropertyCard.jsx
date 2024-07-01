@@ -9,11 +9,9 @@ export const PropertyCard = ({ id, image, title, price, rooms, area, floor, city
         e.preventDefault();
         try {
             const result = await addFavouriteProperty({ id });
-            console.log(result);
         } catch (error) {
             console.error(error);
         }
-        console.log('Добавлено в избранное' + id);
     };
 
     const handleBookProperty = () => {

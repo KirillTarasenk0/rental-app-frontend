@@ -18,6 +18,7 @@ import {SearchedProperties} from "../../pages/searchedProperties/SearchedPropert
 import {Login} from "../../pages/login/Login";
 import {UserProfile} from "../../pages/userProfile/UserProfile";
 import {MyAdverts} from "../../pages/myAdverts/MyAdverts";
+import {FavouriteProperties} from "../../pages/facouriteProperties/FavouriteProperties";
 
 export const Router = () => {
     return useRoutes([
@@ -84,6 +85,10 @@ export const Router = () => {
                             path: 'myAdverts',
                             element: <MyAdverts/>,
                         },
+                        {
+                            path: 'favouriteProperties',
+                            element: <FavouriteProperties/>,
+                        }
                     ],
                 },
                 {
