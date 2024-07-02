@@ -1,14 +1,28 @@
-import React from 'react';
 import './PropertyCard.scss';
-import { useAddFavouritePropertyMutation } from "../../slices/userFavouriteProperyApi";
+import { useAddFavouritePropertyMutation, useDeleteFavouritePropertyMutation } from "../../slices/userFavouriteProperyApi";
+import { useAuth } from '../../contexts/AuthContext';
 
-export const PropertyCard = ({ id, image, title, price, rooms, area, floor, city, address, description }) => {
-    const [addFavouriteProperty, { isLoading }] = useAddFavouritePropertyMutation();
+export const PropertyCard = ({ id, image, title, price, rooms, area, floor, city, address, description, isFavouritePage, onRemove }) => {
+    const { userStatus } = useAuth();
+    const [addFavouriteProperty, { isLoading: isAdding }] = useAddFavouritePropertyMutation();
+    const [deleteFavouriteProperty, { isLoading: isDeleting }] = useDeleteFavouritePropertyMutation();
 
     const handleAddToFavorites = async (e) => {
         e.preventDefault();
         try {
-            const result = await addFavouriteProperty({ id });
+            await addFavouriteProperty({ id });
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const handleDeleteFromFavorites = async (e) => {
+        e.preventDefault();
+        try {
+            await deleteFavouriteProperty({ id });
+            if (onRemove) {
+                onRemove(id);
+            }
         } catch (error) {
             console.error(error);
         }
@@ -37,9 +51,27 @@ export const PropertyCard = ({ id, image, title, price, rooms, area, floor, city
                 </div>
                 <p className="property-card__content__description">{description}</p>
                 <div className="property-card__content__actions">
-                    <button className="property-card__button property-card__button--favorite" onClick={handleAddToFavorites}>
-                        Добавить в избранное
-                    </button>
+                    {userStatus && (
+                        <>
+                            {isFavouritePage ? (
+                                <button
+                                    className="property-card__button property-card__button--remove-favorite"
+                                    onClick={handleDeleteFromFavorites}
+                                    disabled={isDeleting}
+                                >
+                                    Удалить из избранного
+                                </button>
+                            ) : (
+                                <button
+                                    className="property-card__button property-card__button--favorite"
+                                    onClick={handleAddToFavorites}
+                                    disabled={isAdding}
+                                >
+                                    Добавить в избранное
+                                </button>
+                            )}
+                        </>
+                    )}
                     <button className="property-card__button property-card__button--book" onClick={handleBookProperty}>
                         Забронировать
                     </button>

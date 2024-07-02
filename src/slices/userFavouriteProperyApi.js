@@ -23,7 +23,18 @@ export const userFavouritePropertyApi = createApi({
         getFavouriteProperty: builder.query({
             query: () => '/getFavouriteProperties',
         }),
+        deleteFavouriteProperty: builder.mutation({
+            query: ({ id }) => ({
+                url: '/deleteFavouriteProperty',
+                method: 'DELETE',
+                body: { id },
+            }) ,
+        }),
     }),
 });
 
-export const { useAddFavouritePropertyMutation, useGetFavouritePropertyQuery } = userFavouritePropertyApi;
+export const {
+    useAddFavouritePropertyMutation,
+    useGetFavouritePropertyQuery,
+    useDeleteFavouritePropertyMutation,
+} = userFavouritePropertyApi;
