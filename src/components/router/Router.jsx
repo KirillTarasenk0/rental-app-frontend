@@ -19,6 +19,8 @@ import {Login} from "../../pages/login/Login";
 import {UserProfile} from "../../pages/userProfile/UserProfile";
 import {MyAdverts} from "../../pages/myAdverts/MyAdverts";
 import {FavouriteProperties} from "../../pages/facouriteProperties/FavouriteProperties";
+import {BookedProperties} from "../../pages/bookedProperties/BookedProperties";
+import {BookingForm} from "../../pages/bookingForm/BookingForm";
 
 export const Router = () => {
     return useRoutes([
@@ -71,6 +73,10 @@ export const Router = () => {
                     element: <SearchedProperties/>,
                 },
                 {
+                    path: 'bookProperty/:id',
+                    element: <BookingForm/>,
+                },
+                {
                     path: 'settings',
                     children: [
                         {
@@ -88,7 +94,11 @@ export const Router = () => {
                         {
                             path: 'favouriteProperties',
                             element: <FavouriteProperties/>,
-                        }
+                        },
+                        {
+                            path: 'bookedProperties',
+                            element: <BookedProperties/>,
+                        },
                     ],
                 },
                 {

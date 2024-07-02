@@ -37,7 +37,7 @@ export const FavouriteProperties = () => {
                                 address={property?.address}
                                 description={property?.description}
                                 isFavouritePage={true}
-                                onRemove={handleRemoveProperty} // Передаем функцию удаления
+                                onRemove={handleRemoveProperty}
                             />
                         </Link>
                     ))}

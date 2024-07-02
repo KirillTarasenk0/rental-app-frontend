@@ -1,6 +1,7 @@
 import './PropertyCard.scss';
 import { useAddFavouritePropertyMutation, useDeleteFavouritePropertyMutation } from "../../slices/userFavouriteProperyApi";
 import { useAuth } from '../../contexts/AuthContext';
+import {Link} from "react-router-dom";
 
 export const PropertyCard = ({ id, image, title, price, rooms, area, floor, city, address, description, isFavouritePage, onRemove }) => {
     const { userStatus } = useAuth();
@@ -26,10 +27,6 @@ export const PropertyCard = ({ id, image, title, price, rooms, area, floor, city
         } catch (error) {
             console.error(error);
         }
-    };
-
-    const handleBookProperty = () => {
-        console.log('Забронировано' + id);
     };
 
     return (
@@ -72,8 +69,10 @@ export const PropertyCard = ({ id, image, title, price, rooms, area, floor, city
                             )}
                         </>
                     )}
-                    <button className="property-card__button property-card__button--book" onClick={handleBookProperty}>
-                        Забронировать
+                    <button className="property-card__button property-card__button--book" >
+                        <Link className="book__link" to={`/bookProperty/${id}`}>
+                            Забронировать
+                        </Link>
                     </button>
                 </div>
             </div>

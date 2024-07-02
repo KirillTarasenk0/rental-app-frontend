@@ -93,6 +93,10 @@ $box-shadow: rgba(0, 0, 0, 0.1);
             background-color: darken($primary-color, 10%);
           }
         }
+        .book__link {
+          text-decoration: none;
+          color: white;
+        }
       }
     }
   }

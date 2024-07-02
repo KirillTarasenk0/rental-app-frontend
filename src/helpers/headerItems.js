@@ -43,6 +43,10 @@ const getHeaderItems = (isLoggedIn, userStatus) => {
                             label: <Link to="settings/favouriteProperties">Избранные объявления</Link>,
                             key: 'favouriteAdds',
                         } : null,
+                        isLoggedIn ? {
+                            label: <Link to="settings/bookedProperties">Мои бронирования</Link>,
+                            key: 'bookedProperties',
+                        } : null,
                     ],
                 },
             ],
