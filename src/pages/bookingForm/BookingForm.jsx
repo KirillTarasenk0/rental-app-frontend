@@ -1,33 +1,31 @@
 import './BookingForm.scss';
 import { useState } from 'react';
-import {useParams} from "react-router-dom";
+import { useParams } from 'react-router-dom';
+import { useBookPropertyMutation } from "../../slices/propertiesBookApi";
 
 export const BookingForm = () => {
     const { id } = useParams();
-    const [formData, setFormData] = useState({
-        property_id: id,
-        name: '',
-        phone: '',
-        email: '',
-        comment: '',
-    });
+    const [name, setName] = useState('');
+    const [phone, setPhone] = useState('');
+    const [email, setEmail] = useState('');
+    const [comment, setComment] = useState('');
     const [status, setStatus] = useState('');
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
-    };
+    const [bookProperty, { isLoading, isError }] = useBookPropertyMutation();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const formData = new FormData();
+        formData.append('property_id', id);
+        formData.append('name', name);
+        formData.append('phone', phone);
+        formData.append('email', email);
+        formData.append('comment', comment);
+
         try {
-            // Simulating successful form submission
+            await bookProperty(formData).unwrap();
             setStatus('success');
         } catch (error) {
-            console.error(error);
+            console.error('Error booking property:', error);
             setStatus('error');
         }
     };
@@ -42,9 +40,8 @@ export const BookingForm = () => {
                         className="booking-form__input"
                         type="text"
                         id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
                         required
                     />
                 </div>
@@ -54,9 +51,8 @@ export const BookingForm = () => {
                         className="booking-form__input"
                         type="text"
                         id="phone"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
                         required
                     />
                 </div>
@@ -66,9 +62,8 @@ export const BookingForm = () => {
                         className="booking-form__input"
                         type="email"
                         id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         required
                     />
                 </div>
@@ -77,15 +72,16 @@ export const BookingForm = () => {
                     <textarea
                         className="booking-form__textarea"
                         id="comment"
-                        name="comment"
-                        value={formData.comment}
-                        onChange={handleChange}
+                        value={comment}
+                        onChange={(e) => setComment(e.target.value)}
                     />
                 </div>
-                <button className="booking-form__button" type="submit">Submit</button>
+                <button className="booking-form__button" type="submit" disabled={isLoading}>
+                    {isLoading ? 'Submitting...' : 'Submit'}
+                </button>
                 {status === 'success' && <p className="booking-form__success">Booking successful!</p>}
                 {status === 'error' && <p className="booking-form__error">Booking failed. Please try again.</p>}
             </form>
         </div>
     );
-}
+};

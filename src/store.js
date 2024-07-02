@@ -9,6 +9,7 @@ import {userProfileApi} from "./slices/userProfileApi";
 import {addAdvertApi} from "./slices/addAdvertApi";
 import {userAddedPropertiesApi} from "./slices/userAddedPropertiesApi";
 import {userFavouritePropertyApi} from "./slices/userFavouriteProperyApi";
+import {propertiesBookApi} from "./slices/propertiesBookApi";
 
 export const store = configureStore({
     reducer: {
@@ -21,6 +22,7 @@ export const store = configureStore({
         [addAdvertApi.reducerPath]: addAdvertApi.reducer,
         [userAddedPropertiesApi.reducerPath]: userAddedPropertiesApi.reducer,
         [userFavouritePropertyApi.reducerPath]: userFavouritePropertyApi.reducer,
+        [propertiesBookApi.reducerPath]: propertiesBookApi.reducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware().concat(
@@ -33,6 +35,7 @@ export const store = configureStore({
             addAdvertApi.middleware,
             userAddedPropertiesApi.middleware,
             userFavouritePropertyApi.middleware,
+            propertiesBookApi.middleware,
         ),
 });
 

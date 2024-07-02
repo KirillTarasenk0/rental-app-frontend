@@ -14,25 +14,13 @@ export const propertiesBookApi = createApi({
     }),
     endpoints: (builder) => ({
         bookProperty: builder.mutation({
-            query: ({ id }) => ({
+            query: (formData) => ({
                 url: '/bookProperty',
                 method: 'POST',
-                body: { id },
+                body: formData,
             }),
         }),
-        /*getFavouriteProperty: builder.query({
-            query: () => '/getFavouriteProperties',
-        }),
-        deleteFavouriteProperty: builder.mutation({
-            query: ({ id }) => ({
-                url: '/deleteFavouriteProperty',
-                method: 'DELETE',
-                body: { id },
-            }) ,
-        }),*/
     }),
 });
 
-export const {
-    useBookPropertyMutation,
-} = propertiesBookApi;
+export const { useBookPropertyMutation } = propertiesBookApi;
