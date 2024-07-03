@@ -1,14 +1,16 @@
 import './PropertyCard.scss';
 import { useAddFavouritePropertyMutation, useDeleteFavouritePropertyMutation } from "../../slices/userFavouriteProperyApi";
 import { useAuth } from '../../contexts/AuthContext';
-import {Link} from "react-router-dom";
-import {useDeleteBookedPropertyMutation} from "../../slices/propertiesBookApi";
+import { Link } from "react-router-dom";
+import { useDeleteBookedPropertyMutation } from "../../slices/propertiesBookApi";
+import {useDeleteUserAddedPropertyMutation} from "../../slices/userAddedPropertiesApi";
 
-export const PropertyCard = ({ id, image, title, price, rooms, area, floor, city, address, description, isFavouritePage, onRemove, isBookedPage }) => {
+export const PropertyCard = ({ id, image, title, price, rooms, area, floor, city, address, description, isFavouritePage, onRemove, isBookedPage, isUserProperty }) => {
     const { userStatus } = useAuth();
     const [addFavouriteProperty, { isLoading: isAdding }] = useAddFavouritePropertyMutation();
     const [deleteFavouriteProperty, { isLoading: isDeleting }] = useDeleteFavouritePropertyMutation();
-    const [deleteBookedProperty, { isLoading }] = useDeleteBookedPropertyMutation();
+    const [deleteBookedProperty, { isLoading: isDeleteBooked }] = useDeleteBookedPropertyMutation();
+    const [deleteUserAddedProperty, { isLoading }] = useDeleteUserAddedPropertyMutation();
     const handleAddToFavorites = async (e) => {
         e.preventDefault();
         try {
@@ -34,10 +36,19 @@ export const PropertyCard = ({ id, image, title, price, rooms, area, floor, city
         e.preventDefault();
         try {
             await deleteBookedProperty({ id });
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const handleDeleteUserAddedProperty = async (e) => {
+        e.preventDefault();
+        try {
+            await deleteUserAddedProperty({ id });
         } catch(error) {
             console.error(error);
         }
-    }
+    };
 
     return (
         <div className="property-card">
@@ -58,42 +69,55 @@ export const PropertyCard = ({ id, image, title, price, rooms, area, floor, city
                 </div>
                 <p className="property-card__content__description">{description}</p>
                 <div className="property-card__content__actions">
-                    {userStatus && (
+                    {isUserProperty ? (
                         <>
-                            {isFavouritePage ? (
-                                <button
-                                    className="property-card__button property-card__button--remove-favorite"
-                                    onClick={handleDeleteFromFavorites}
-                                    disabled={isDeleting}
-                                >
-                                    Удалить из избранного
-                                </button>
-                            ) : (
-                                <button
-                                    className="property-card__button property-card__button--favorite"
-                                    onClick={handleAddToFavorites}
-                                    disabled={isAdding}
-                                >
-                                    Добавить в избранное
-                                </button>
-                            )}
+                            <button className="property-card__button property-card__button--edit">
+                                <Link className="link" to={`/editProperty/${id}`}>Редактировать</Link>
+                            </button>
+                            <button className="property-card__button property-card__button--delete" onClick={handleDeleteUserAddedProperty}>
+                                Удалить
+                            </button>
                         </>
-                    )}
-                    {userStatus && (
+                    ) : (
                         <>
-                            {!isBookedPage ? (
-                                <button className="property-card__button property-card__button--book" >
-                                    <Link className="book__link" to={`/bookProperty/${id}`}>
-                                        Забронировать
-                                    </Link>
-                                </button>
-                            ) : (
-                                <button
-                                    className="property-card__button property-card__button--favorite"
-                                    onClick={handleDeleteFromBooked}
-                                >
-                                    Отменить бронирование
-                                </button>
+                            {userStatus && (
+                                <>
+                                    {isFavouritePage ? (
+                                        <button
+                                            className="property-card__button property-card__button--remove-favorite"
+                                            onClick={handleDeleteFromFavorites}
+                                            disabled={isDeleting}
+                                        >
+                                            Удалить из избранного
+                                        </button>
+                                    ) : (
+                                        <button
+                                            className="property-card__button property-card__button--favorite"
+                                            onClick={handleAddToFavorites}
+                                            disabled={isAdding}
+                                        >
+                                            Добавить в избранное
+                                        </button>
+                                    )}
+                                </>
+                            )}
+                            {userStatus && (
+                                <>
+                                    {!isBookedPage ? (
+                                        <button className="property-card__button property-card__button--book">
+                                            <Link className="link" to={`/bookProperty/${id}`}>
+                                                Забронировать
+                                            </Link>
+                                        </button>
+                                    ) : (
+                                        <button
+                                            className="property-card__button property-card__button--favorite"
+                                            onClick={handleDeleteFromBooked}
+                                        >
+                                            Отменить бронирование
+                                        </button>
+                                    )}
+                                </>
                             )}
                         </>
                     )}

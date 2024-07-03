@@ -25,6 +25,7 @@ export const MyAdverts = () => {
                                 city={property?.city}
                                 address={property?.address}
                                 description={property?.description}
+                                isUserProperty={true}
                             />
                         </Link>
                     ))}

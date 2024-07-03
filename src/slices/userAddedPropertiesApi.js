@@ -16,7 +16,17 @@ export const userAddedPropertiesApi = createApi({
         getUserAddedProperties: builder.query({
             query: (userId) => `/getUserAddedProperty/${userId}`,
         }),
+        deleteUserAddedProperty: builder.mutation({
+            query: ({ id }) => ({
+               url: '/deleteUserAddedProperty',
+               method: 'DELETE',
+               body: { id },
+            }),
+        }),
     }),
 });
 
-export const {useGetUserAddedPropertiesQuery} = userAddedPropertiesApi;
+export const {
+    useGetUserAddedPropertiesQuery,
+    useDeleteUserAddedPropertyMutation,
+} = userAddedPropertiesApi;
