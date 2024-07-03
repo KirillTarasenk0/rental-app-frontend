@@ -2,12 +2,13 @@ import './PropertyCard.scss';
 import { useAddFavouritePropertyMutation, useDeleteFavouritePropertyMutation } from "../../slices/userFavouriteProperyApi";
 import { useAuth } from '../../contexts/AuthContext';
 import {Link} from "react-router-dom";
+import {useDeleteBookedPropertyMutation} from "../../slices/propertiesBookApi";
 
 export const PropertyCard = ({ id, image, title, price, rooms, area, floor, city, address, description, isFavouritePage, onRemove, isBookedPage }) => {
     const { userStatus } = useAuth();
     const [addFavouriteProperty, { isLoading: isAdding }] = useAddFavouritePropertyMutation();
     const [deleteFavouriteProperty, { isLoading: isDeleting }] = useDeleteFavouritePropertyMutation();
-
+    const [deleteBookedProperty, { isLoading }] = useDeleteBookedPropertyMutation();
     const handleAddToFavorites = async (e) => {
         e.preventDefault();
         try {
@@ -28,6 +29,15 @@ export const PropertyCard = ({ id, image, title, price, rooms, area, floor, city
             console.error(error);
         }
     };
+
+    const handleDeleteFromBooked = async (e) => {
+        e.preventDefault();
+        try {
+            await deleteBookedProperty({ id });
+        } catch(error) {
+            console.error(error);
+        }
+    }
 
     return (
         <div className="property-card">
@@ -80,6 +90,7 @@ export const PropertyCard = ({ id, image, title, price, rooms, area, floor, city
                             ) : (
                                 <button
                                     className="property-card__button property-card__button--favorite"
+                                    onClick={handleDeleteFromBooked}
                                 >
                                     Отменить бронирование
                                 </button>

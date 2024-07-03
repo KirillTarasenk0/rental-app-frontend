@@ -23,10 +23,18 @@ export const propertiesBookApi = createApi({
         getBookedProperties: builder.query({
             query: () => '/getBookedProperties',
         }),
+        deleteBookedProperty: builder.mutation({
+            query: ({ id }) => ({
+                url: '/deleteBookedProperty',
+                method: 'DELETE',
+                body: { id },
+            }),
+        }),
     }),
 });
 
 export const {
     useBookPropertyMutation,
     useGetBookedPropertiesQuery,
+    useDeleteBookedPropertyMutation,
 } = propertiesBookApi;
