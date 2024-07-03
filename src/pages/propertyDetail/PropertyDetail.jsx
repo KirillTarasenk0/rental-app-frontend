@@ -1,6 +1,8 @@
 import './PropertyDetail.scss';
 import { useParams } from "react-router-dom";
 import { useGetPropertyDetailsQuery } from "../../slices/propertyDetailsApi";
+import {AddComments} from "../../components/addComments/AddComments";
+import {CommentCard} from "../../components/commentCard/CommentCard";
 
 export const PropertyDetail = () => {
     const { id } = useParams();
@@ -37,6 +39,16 @@ export const PropertyDetail = () => {
                         <p className="property-detail__parking">Parking: {details?.parking ? 'Yes' : 'No'}</p>
                         <p className="property-detail__description">{details?.description}</p>
                     </div>
+                    <h4>Комментарии</h4>
+                    <CommentCard
+                        user={'Kirill'}
+                        rating={10}
+                        cleanliness={10}
+                        amenities={10}
+                        location={10}
+                        comment={'Goof'}
+                    />
+                    <AddComments/>
                 </div>
             </div>
         </>

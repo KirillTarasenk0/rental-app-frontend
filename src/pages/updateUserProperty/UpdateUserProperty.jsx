@@ -21,7 +21,7 @@ export const UpdateUserProperty = () => {
     const [internet, setInternet] = useState(false);
     const [city, setCity] = useState('');
     const [image, setImage] = useState(null);
-    console.log(id);
+
     const handleUpdateImage = (e) => {
         const imageFile = e.target.files[0];
         setImage(imageFile);
