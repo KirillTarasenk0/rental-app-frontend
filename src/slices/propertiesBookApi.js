@@ -20,7 +20,13 @@ export const propertiesBookApi = createApi({
                 body: formData,
             }),
         }),
+        getBookedProperties: builder.query({
+            query: () => '/getBookedProperties',
+        }),
     }),
 });
 
-export const { useBookPropertyMutation } = propertiesBookApi;
+export const {
+    useBookPropertyMutation,
+    useGetBookedPropertiesQuery,
+} = propertiesBookApi;
