@@ -21,6 +21,7 @@ import {MyAdverts} from "../../pages/myAdverts/MyAdverts";
 import {FavouriteProperties} from "../../pages/facouriteProperties/FavouriteProperties";
 import {BookedProperties} from "../../pages/bookedProperties/BookedProperties";
 import {BookingForm} from "../../pages/bookingForm/BookingForm";
+import {UpdateUserProperty} from "../../pages/updateUserProperty/UpdateUserProperty";
 
 export const Router = () => {
     return useRoutes([
@@ -71,6 +72,10 @@ export const Router = () => {
                 {
                     path: 'properties/searched',
                     element: <SearchedProperties/>,
+                },
+                {
+                    path: 'properties/update/:id',
+                    element: <UpdateUserProperty/>,
                 },
                 {
                     path: 'bookProperty/:id',

@@ -72,9 +72,11 @@ export const PropertyCard = ({ id, image, title, price, rooms, area, floor, city
                     {isUserProperty ? (
                         <>
                             <button className="property-card__button property-card__button--edit">
-                                <Link className="link" to={`/editProperty/${id}`}>Редактировать</Link>
+                                <Link className="link" to={`/properties/update/${id}`}>Редактировать</Link>
                             </button>
-                            <button className="property-card__button property-card__button--delete" onClick={handleDeleteUserAddedProperty}>
+                            <button className="property-card__button property-card__button--delete"
+                                    onClick={handleDeleteUserAddedProperty}
+                            >
                                 Удалить
                             </button>
                         </>

@@ -23,10 +23,18 @@ export const userAddedPropertiesApi = createApi({
                body: { id },
             }),
         }),
+        updateUserAddedProperty: builder.mutation({
+            query: (formData) => ({
+                url: '/updateUserAddedProperty',
+                method: 'POST',
+                body: formData,
+            }),
+        }),
     }),
 });
 
 export const {
     useGetUserAddedPropertiesQuery,
     useDeleteUserAddedPropertyMutation,
+    useUpdateUserAddedPropertyMutation,
 } = userAddedPropertiesApi;

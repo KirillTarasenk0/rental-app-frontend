@@ -47,7 +47,6 @@ export const AddAdvert = () => {
 
         try {
             const result = await addAdvert(formData).unwrap();
-            console.log(result);
         } catch (error) {
             console.error(error);
         }
