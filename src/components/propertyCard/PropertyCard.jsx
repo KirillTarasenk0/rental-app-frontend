@@ -3,7 +3,7 @@ import { useAddFavouritePropertyMutation, useDeleteFavouritePropertyMutation } f
 import { useAuth } from '../../contexts/AuthContext';
 import {Link} from "react-router-dom";
 
-export const PropertyCard = ({ id, image, title, price, rooms, area, floor, city, address, description, isFavouritePage, onRemove }) => {
+export const PropertyCard = ({ id, image, title, price, rooms, area, floor, city, address, description, isFavouritePage, onRemove, isBookedPage }) => {
     const { userStatus } = useAuth();
     const [addFavouriteProperty, { isLoading: isAdding }] = useAddFavouritePropertyMutation();
     const [deleteFavouriteProperty, { isLoading: isDeleting }] = useDeleteFavouritePropertyMutation();
@@ -69,11 +69,23 @@ export const PropertyCard = ({ id, image, title, price, rooms, area, floor, city
                             )}
                         </>
                     )}
-                    <button className="property-card__button property-card__button--book" >
-                        <Link className="book__link" to={`/bookProperty/${id}`}>
-                            Забронировать
-                        </Link>
-                    </button>
+                    {userStatus && (
+                        <>
+                            {!isBookedPage ? (
+                                <button className="property-card__button property-card__button--book" >
+                                    <Link className="book__link" to={`/bookProperty/${id}`}>
+                                        Забронировать
+                                    </Link>
+                                </button>
+                            ) : (
+                                <button
+                                    className="property-card__button property-card__button--favorite"
+                                >
+                                    Отменить бронирование
+                                </button>
+                            )}
+                        </>
+                    )}
                 </div>
             </div>
         </div>

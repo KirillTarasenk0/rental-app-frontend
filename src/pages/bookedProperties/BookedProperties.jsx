@@ -23,6 +23,7 @@ export const BookedProperties = () => {
                                 city={property?.city}
                                 address={property?.address}
                                 description={property?.description}
+                                isBookedPage={true}
                             />
                         </Link>
                     ))}
