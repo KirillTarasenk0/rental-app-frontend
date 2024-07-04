@@ -48,7 +48,9 @@ export const PropertyDetail = () => {
                         location={10}
                         comment={'Goof'}
                     />
-                    <AddComments/>
+                    <AddComments
+                        id={id}
+                    />
                 </div>
             </div>
         </>
