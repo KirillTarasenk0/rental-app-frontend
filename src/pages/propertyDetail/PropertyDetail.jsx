@@ -1,12 +1,16 @@
 import './PropertyDetail.scss';
-import { useParams } from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import { useGetPropertyDetailsQuery } from "../../slices/propertyDetailsApi";
 import {AddComments} from "../../components/addComments/AddComments";
 import {CommentCard} from "../../components/commentCard/CommentCard";
+import {useGetPropertyCommentsQuery} from "../../slices/propertyCommentApi";
+import {PropertyCard} from "../../components/propertyCard/PropertyCard";
 
 export const PropertyDetail = () => {
-    const { id } = useParams();
+    const { id} = useParams();
     const { data: property, error, isLoading } = useGetPropertyDetailsQuery(id);
+    const {data: properties} = useGetPropertyCommentsQuery(id);
+    console.log(properties);
     if (isLoading) return <div className="property-detail__loading">Loading...</div>;
     if (error) return <div className="property-detail__error">Error loading property details</div>;
     const details = property?.data[0];
@@ -39,15 +43,17 @@ export const PropertyDetail = () => {
                         <p className="property-detail__parking">Parking: {details?.parking ? 'Yes' : 'No'}</p>
                         <p className="property-detail__description">{details?.description}</p>
                     </div>
-                    <h4>Комментарии</h4>
-                    <CommentCard
-                        user={'Kirill'}
-                        rating={10}
-                        cleanliness={10}
-                        amenities={10}
-                        location={10}
-                        comment={'Goof'}
-                    />
+                    <h4 style={{ marginTop: '30px', marginBottom: '10px', fontSize: '24px' }}>Комментарии</h4>
+                    {properties && properties.data?.map(property => (
+                        <CommentCard
+                            user={property.user}
+                            rating={property.rating}
+                            cleanliness={property.cleanliness}
+                            amenities={property.amenities}
+                            location={property.location}
+                            comment={property.comment}
+                        />
+                    ))}
                     <AddComments
                         id={id}
                     />

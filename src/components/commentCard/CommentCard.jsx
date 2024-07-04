@@ -11,8 +11,8 @@ export const CommentCard = ({ user, rating, cleanliness, amenities, location, co
                     alt={`Avatar of ${user.name}`}
                 />
                 <div className="comment-card__user-info">
-                    <h2 className="comment-card__user-name">уцацуп</h2>
-                    <p className="comment-card__user-email">цупйцф</p>
+                    <h2 className="comment-card__user-name">{user.name}</h2>
+                    <p className="comment-card__user-email">{user.email}</p>
                 </div>
             </div>
             <div className="comment-card__body">
@@ -31,7 +31,7 @@ export const CommentCard = ({ user, rating, cleanliness, amenities, location, co
                     </div>
                 </div>
                 <div className="comment-card__comment">
-                    <span className="comment-card__label">Комментарий:</span> {comment}
+                    <span className="comment-card__label">Комментарий:</span> {comment ? comment : 'Нет комментария'}
                 </div>
             </div>
         </div>

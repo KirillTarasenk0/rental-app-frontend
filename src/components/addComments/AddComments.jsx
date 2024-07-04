@@ -9,6 +9,7 @@ export const AddComments = ({ id }) => {
     const [amenities, setAmenities] = useState('');
     const [location, setLocation] = useState('');
     const [comment, setComment] = useState('');
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -18,7 +19,9 @@ export const AddComments = ({ id }) => {
         formData.append('cleanliness', cleanliness);
         formData.append('amenities', amenities);
         formData.append('location', location);
-        formData.append('comment', comment);
+        if (comment.trim() !== '') {
+            formData.append('comment', comment);
+        }
 
         try {
             await updatePropertyComment(formData).unwrap();

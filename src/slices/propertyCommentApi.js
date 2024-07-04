@@ -20,9 +20,13 @@ export const propertyCommentApi = createApi({
                 body: formData,
             }),
         }),
+        getPropertyComments: builder.query({
+            query: (id) => `/getReviews/${id}`,
+        })
     }),
 });
 
 export const {
     useUpdatePropertyCommentMutation,
+    useGetPropertyCommentsQuery,
 } = propertyCommentApi;
