@@ -22,6 +22,7 @@ import {FavouriteProperties} from "../../pages/facouriteProperties/FavouriteProp
 import {BookedProperties} from "../../pages/bookedProperties/BookedProperties";
 import {BookingForm} from "../../pages/bookingForm/BookingForm";
 import {UpdateUserProperty} from "../../pages/updateUserProperty/UpdateUserProperty";
+import {MyAdvertsStatistics} from "../../pages/myAdvertsStatistics/MyAdvertsStatistics";
 
 export const Router = () => {
     return useRoutes([
@@ -103,6 +104,10 @@ export const Router = () => {
                         {
                             path: 'bookedProperties',
                             element: <BookedProperties/>,
+                        },
+                        {
+                            path: 'myAdvertsStatistics',
+                            element: <MyAdvertsStatistics/>,
                         },
                     ],
                 },

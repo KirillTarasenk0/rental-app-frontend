@@ -10,7 +10,6 @@ export const Header = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const navigate = useNavigate();
     const { userStatus } = useAuth();
-    console.log(userStatus)
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token || userStatus) {

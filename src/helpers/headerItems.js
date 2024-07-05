@@ -47,6 +47,10 @@ const getHeaderItems = (isLoggedIn, userStatus) => {
                             label: <Link to="settings/bookedProperties">Мои бронирования</Link>,
                             key: 'bookedProperties',
                         } : null,
+                        isLoggedIn && userStatus && userStatus.role === 'renter' ? {
+                            label: <Link to="settings/myAdvertsStatistics">Статистика моих объявлений</Link>,
+                            key: 'myAdsStatistics',
+                        } : null,
                     ],
                 },
             ],

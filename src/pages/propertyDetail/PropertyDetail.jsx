@@ -4,13 +4,11 @@ import { useGetPropertyDetailsQuery } from "../../slices/propertyDetailsApi";
 import {AddComments} from "../../components/addComments/AddComments";
 import {CommentCard} from "../../components/commentCard/CommentCard";
 import {useGetPropertyCommentsQuery} from "../../slices/propertyCommentApi";
-import {PropertyCard} from "../../components/propertyCard/PropertyCard";
 
 export const PropertyDetail = () => {
     const { id} = useParams();
     const { data: property, error, isLoading } = useGetPropertyDetailsQuery(id);
     const {data: properties} = useGetPropertyCommentsQuery(id);
-    console.log(properties);
     if (isLoading) return <div className="property-detail__loading">Loading...</div>;
     if (error) return <div className="property-detail__error">Error loading property details</div>;
     const details = property?.data[0];
