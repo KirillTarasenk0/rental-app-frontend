@@ -14,6 +14,10 @@ export const propertiesSearchApi = createApi({
                 if (formData.price_from) params.append('price_from', formData.price_from);
                 if (formData.price_to) params.append('price_to', formData.price_to);
                 if (formData.city) params.append('city', formData.city);
+                params.append('furnished', formData.furnished ? '1' : '0');
+                params.append('parking', formData.parking ? '1' : '0');
+                params.append('internet', formData.internet ? '1' : '0');
+                console.log(params.toString())
                 return `?${params.toString()}`;
             },
         }),

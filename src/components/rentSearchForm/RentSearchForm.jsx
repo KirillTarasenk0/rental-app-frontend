@@ -5,7 +5,7 @@ import { EnvironmentOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export const RentSearchForm = () => {
+export const RentSearchForm = ({furnished, internet, parking}) => {
     const [propertyType, setPropertyType] = useState('');
     const [roomsCount, setRoomsCount] = useState(0);
     const [priceFrom, setPriceFrom] = useState(0);
@@ -18,7 +18,10 @@ export const RentSearchForm = () => {
             rooms: roomsCount,
             price_from: priceFrom,
             price_to: priceTo,
-            city: city
+            city: city,
+            furnished: furnished,
+            parking: parking,
+            internet: internet,
         };
         navigate('/properties/searched', { state: formData });
     };
