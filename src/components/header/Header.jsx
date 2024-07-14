@@ -42,13 +42,11 @@ export const Header = () => {
                                 />
                             </li>
                             <li className="header__buttons-container">
-                                {!isLoggedIn && (
-                                    <div className="header__enter-button">
-                                        <button onClick={() => navigate('/register')}>
-                                            Войти
-                                        </button>
-                                    </div>
-                                )}
+                                <div className="header__enter-button">
+                                    <button onClick={() => navigate('/register')}>
+                                        Войти
+                                    </button>
+                                </div>
                                 <div className="header__advertisement-button">
                                     <button onClick={() => navigate('/addAdvertisement')}>
                                         Добавить объявление

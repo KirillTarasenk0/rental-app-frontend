@@ -35,7 +35,7 @@ const getHeaderItems = (isLoggedIn, userStatus) => {
                             label: <Link to="/settings/editProfile">Редактировать</Link>,
                             key: 'setting:2',
                         },
-                        isLoggedIn && userStatus && userStatus.role === 'renter' ? {
+                        isLoggedIn && userStatus && userStatus.role === 'landlord' ? {
                             label: <Link to="settings/myAdverts">Мои объявления</Link>,
                             key: 'myAds',
                         } : null,
